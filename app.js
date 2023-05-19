@@ -4,6 +4,23 @@ const formidable = require("formidable");
 const fs = require("fs");
 const PDFParser = require("pdf-parse");
 
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.SECRET_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const test = async () => {
+    const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{role: "user", content: "Hello world"}],
+      });
+      console.log(completion.data.choices[0].message);
+}
+
+test();
+
 const app = express();
 const port = 3333;
 
@@ -16,7 +33,7 @@ app.get("/", (req, res) => {
 app.get("/input-pdf", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write(
-    '<form action="fileupload" method="post" enctype="multipart/form-data">'
+    '<form action="file-upload" method="post" enctype="multipart/form-data">'
   );
   res.write('<input type="file" name="filetoupload"><br>');
   res.write('<input type="submit">');
@@ -24,7 +41,7 @@ app.get("/input-pdf", (req, res) => {
   return res.end();
 });
 
-app.post("/fileupload", (req, res) => {
+app.post("/file-upload", (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
     if (err) throw err;
@@ -39,7 +56,7 @@ app.post("/fileupload", (req, res) => {
       }
 
       PDFParser(data)
-        .then(function (result) {
+        .then(async function (result) {
           const text = result.text;
           console.log("Text from the PDF :", text);
 
@@ -51,8 +68,11 @@ app.post("/fileupload", (req, res) => {
             }
           });
 
-          res.write("File downloaded and successfully converted.");
-          res.write(text);
+          //res.write("File downloaded and successfully converted.");
+          //res.write(text);
+          //res.write(completion.data.choices[0].message);
+
+          
           res.end();
         })
         .catch(function (err) {
