@@ -1,8 +1,9 @@
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const formidable = require("formidable");
 const fs = require("fs");
 const PDFParser = require("pdf-parse");
+const { v4: uuidv4 } = require("uuid");
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -10,16 +11,6 @@ const configuration = new Configuration({
   apiKey: process.env.SECRET_KEY,
 });
 const openai = new OpenAIApi(configuration);
-
-const test = async () => {
-    const completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: "Hello world"}],
-      });
-      console.log(completion.data.choices[0].message);
-}
-
-test();
 
 const app = express();
 const port = 3333;
@@ -32,19 +23,32 @@ app.get("/", (req, res) => {
 
 app.get("/input-pdf", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
+  res.write("The CV is being analyzed, please be patient");
+  res.write("(It may take up to 1 minute)");
   res.write(
     '<form action="file-upload" method="post" enctype="multipart/form-data">'
   );
   res.write('<input type="file" name="filetoupload"><br>');
-  res.write('<input type="submit">');
+  res.write('<input value="Submit" type="submit">');
   res.write("</form>");
   return res.end();
 });
 
 app.post("/file-upload", (req, res) => {
   const form = new formidable.IncomingForm();
+
+  if (form) {
+    console.log("PDF successfully received");
+  }
+
   form.parse(req, function (err, fields, files) {
-    if (err) throw err;
+    if (err) {
+      console.error("Error while parsing the form:", err);
+      res.status(500).send("Error while parsing the form");
+      return;
+    } else {
+      console.log("PDF successfully parsed");
+    }
 
     const { filepath } = files.filetoupload;
 
@@ -53,27 +57,70 @@ app.post("/file-upload", (req, res) => {
         console.error("Error while reading the PDF file:", err);
         res.status(500).send("Error while reading the PDF file");
         return;
+      } else {
+        console.log("PDF successfully read");
       }
 
       PDFParser(data)
         .then(async function (result) {
           const text = result.text;
-          console.log("Text from the PDF :", text);
 
           fs.unlink(filepath, function (err) {
             if (err) {
               console.error("Error when deleting the temporary PDF file:", err);
             } else {
-              console.log("Temporary PDF file successfully deleted.");
+              console.log("Temporary PDF file successfully deleted");
             }
           });
 
-          //res.write("File downloaded and successfully converted.");
-          //res.write(text);
-          //res.write(completion.data.choices[0].message);
+          console.log("Extracted data send to the API");
+          console.log("Starting the openAI call... (~ 1min)");
 
-          
-          res.end();
+          try {
+            const completionPromise = openai.createChatCompletion({
+              model: "gpt-3.5-turbo",
+              messages: [
+                {
+                  role: "user",
+                  content: `Voici les données d'un CV, renvoie-moi sous forme de JSON les données suivantes :
+                    - Nom
+                    - Prénom
+                    - Adresse
+                    - Numéro de téléphone
+                    - Email
+                    - Date de naissance
+                    - Expérience professionnelle
+                    - Formation
+                    - Compétences
+                    - Langues
+                    - Loisirs
+                    - Références
+                                    
+                    CV: ${text}`,
+                },
+              ],
+            });
+
+            const completion = await completionPromise;
+            const response = completion.data.choices[0].message.content;
+
+            const filename = `${uuidv4()}.json`;
+            const jsonPath = `cv-json/${filename}`;
+
+            fs.writeFile(jsonPath, response, function (err) {
+              if (err) {
+                console.error("Error when saving JSON file:", err);
+                res.status(500).send("Error when saving JSON file");
+                return;
+              }
+
+              console.log("JSON file saved successfully:", jsonPath);
+              return res.end();
+            });
+          } catch (error) {
+            console.error("Error during API call:", error);
+            res.status(500).send("Error during API call");
+          }
         })
         .catch(function (err) {
           console.error("Error when converting PDF to text:", err);
