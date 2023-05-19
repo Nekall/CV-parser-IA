@@ -1,0 +1,19 @@
+{
+  "name": "cv-parser-ia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "author": "Neka",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "formidable": "^2.1.1",
+    "nodemon": "^2.0.22",
+    "pdf-parse": "^1.1.1"
+  }
+}
