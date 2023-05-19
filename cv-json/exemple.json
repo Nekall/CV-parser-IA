@@ -1,0 +1,72 @@
+{
+  "Nom": "XXX",
+  "Prénom": "XXX",
+  "Adresse": "XXX",
+  "Numéro de téléphone": "XXX",
+  "Email": "XXX",
+  "Date de naissance": "XXX",
+  "Expérience professionnelle": [
+    {
+      "Poste": "XXX",
+      "Employeur": "XXX",
+      "Mission": "XXX",
+      "Période": "XXX",
+      "Rythme": "XXX",
+      "Type de contrat": "XXX",
+      "Éligibilité": "XXX"
+    }
+  ],
+  "Formation": [
+    {
+      "Intitulé": "XXX",
+      "École": "XXX",
+      "Période": "XXX",
+      "Description": "XXX"
+    },
+    {
+      "Intitulé": "XXX",
+      "École": "XXX",
+      "Période": "XXX"
+    },
+    {
+      "Intitulé": "XXX",
+      "École": "XXX",
+      "Période": "XXX"
+    },
+    {
+      "Intitulé": "XXX",
+      "École": "XXX",
+      "Période": "XXX"
+    },
+    {
+      "Intitulé": "XXX",
+      "École": "XXX",
+      "Période": "XXX"
+    },
+    {
+      "Intitulé": "XXX",
+      "École": "XXX",
+      "Période": "XXX",
+      "Description": "XXX"
+    }
+  ],
+  "Compétences": ["XXX", "XXX", "XXX", "XXX", "XXX", "XXX"],
+  "Langues": [
+    {
+      "Langue": "XXX",
+      "Niveau": "XXX"
+    },
+    {
+      "Langue": "XXX",
+      "Niveau": "XXX"
+    },
+    {
+      "Langue": "XXX",
+      "Niveau": "XXX"
+    }
+  ],
+  "Loisirs": ["XXX", "XXX", "XXX", "XXX", "XXX", "XXX"],
+  "Références": "",
+  "Permis B": true,
+  "Disponible immédiatement": true
+}
