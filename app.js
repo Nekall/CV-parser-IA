@@ -82,19 +82,19 @@ app.post("/file-upload", (req, res) => {
               messages: [
                 {
                   role: "user",
-                  content: `Voici les données d'un CV, renvoie-moi sous forme de JSON les données suivantes :
-                    - Nom
-                    - Prénom
-                    - Adresse
-                    - Numéro de téléphone
-                    - Email
-                    - Date de naissance
-                    - Expérience professionnelle
-                    - Formation
-                    - Compétences
-                    - Langues
-                    - Loisirs
-                    - Références
+                  content: `Here is the data for a CV, send me the following data as JSON:
+                  - Lastname
+                  - Firstname
+                  - Address
+                  - Phone number
+                  - Email address
+                  - Date of birth
+                  - Professional experience
+                  - Education
+                  - Competence
+                  - Language skills
+                  - Hobbies
+                  - References
                                     
                     CV: ${text}`,
                 },

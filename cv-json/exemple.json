@@ -1,72 +1,78 @@
 {
-  "Nom": "XXX",
-  "Prénom": "XXX",
-  "Adresse": "XXX",
-  "Numéro de téléphone": "XXX",
-  "Email": "XXX",
-  "Date de naissance": "XXX",
-  "Expérience professionnelle": [
+  "Lastname": "XXXXXXX",
+  "Firstname": "XXXXXXX",
+  "Address": "XXXXXXX",
+  "Phone number": "0X XX XX XX XX",
+  "Email address": "XXXXXXX@XXXXXXX.XXX",
+  "Date of birth": "XX/XX/XXXX",
+  "Professional experience": [
     {
-      "Poste": "XXX",
-      "Employeur": "XXX",
-      "Mission": "XXX",
-      "Période": "XXX",
-      "Rythme": "XXX",
-      "Type de contrat": "XXX",
-      "Éligibilité": "XXX"
+      "Title": "XXXXXXX",
+      "Employer": "XXXXXXX",
+      "Locations": ["XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX"],
+      "Mission": "XXXXXXX",
+      "Start date": "XXXXXXX",
+      "End date": "XXXXXXX",
+      "Rythme": "XXXXXXX",
+      "Type": "XXXXXXX",
+      "Eligibility": "XXXXXXX"
     }
   ],
-  "Formation": [
+  "Education": [
     {
-      "Intitulé": "XXX",
-      "École": "XXX",
-      "Période": "XXX",
-      "Description": "XXX"
+      "Title": "XXXXXXX",
+      "Institution": "XXXXXXX",
+      "Location": "XXXXXXX",
+      "Duration": "XXXXXXX",
+      "Subjects": ["XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX"],
+      "Tools and frameworks": ["XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX"],
+      "Start date": "XXXXXXX",
+      "End date": "XXXXXXX"
     },
     {
-      "Intitulé": "XXX",
-      "École": "XXX",
-      "Période": "XXX"
+      "Title": "XXXXXXX",
+      "Institution": "XXXXXXX",
+      "Location": "XXXXXXX",
+      "Start date": "XXXXXXX",
+      "End date": "XXXXXXX"
     },
     {
-      "Intitulé": "XXX",
-      "École": "XXX",
-      "Période": "XXX"
+      "Title": "XXXXXXX",
+      "Institution": "XXXXXXX",
+      "Location": "XXXXXXX",
+      "Start date": "XXXXXXX",
+      "End date": "XXXXXXX"
     },
     {
-      "Intitulé": "XXX",
-      "École": "XXX",
-      "Période": "XXX"
+      "Title": "XXXXXXX",
+      "Institution": "XXXXXXX",
+      "Location": "XXXXXXX",
+      "Start date": "XXXXXXX",
+      "End date": "XXXXXXX"
     },
     {
-      "Intitulé": "XXX",
-      "École": "XXX",
-      "Période": "XXX"
-    },
-    {
-      "Intitulé": "XXX",
-      "École": "XXX",
-      "Période": "XXX",
-      "Description": "XXX"
+      "Title": "XXXXXXX",
+      "Institution": "XXXXXXX",
+      "Location": "XXXXXXX",
+      "Start date": "XXXXXXX",
+      "End date": "XXXXXXX"
     }
   ],
-  "Compétences": ["XXX", "XXX", "XXX", "XXX", "XXX", "XXX"],
-  "Langues": [
+  "Competence": ["XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX"],
+  "Language skills": [
     {
-      "Langue": "XXX",
-      "Niveau": "XXX"
+      "Language": "XXXXXXX",
+      "Level": "C2"
     },
     {
-      "Langue": "XXX",
-      "Niveau": "XXX"
+      "Language": "XXXXXXX",
+      "Level": "C1"
     },
     {
-      "Langue": "XXX",
-      "Niveau": "XXX"
+      "Language": "XXXXXXX",
+      "Level": "B1"
     }
   ],
-  "Loisirs": ["XXX", "XXX", "XXX", "XXX", "XXX", "XXX"],
-  "Références": "",
-  "Permis B": true,
-  "Disponible immédiatement": true
+  "Hobbies": ["XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX"],
+  "References": ""
 }
